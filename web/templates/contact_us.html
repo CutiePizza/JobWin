@@ -12,14 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="../scripts/pic.js"></script>
-
 </head>
 <body>
 
 <!-- Navigation -->
 <header>
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-md navbar-light ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img class="i" src="../images/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -34,10 +32,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="login.html">Login</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="signup.html">Sign up</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="contact_us.html">Contact us</a>
                     </li>
                 </ul>
@@ -46,42 +44,52 @@
     </nav>
 </header>
 <main>
-    <div class="preview img-wrapper"></div>
-    <div class="file-upload-wrapper">
-        <input type="file" name="file" class="file-upload-native" accept="image/*"/>
-        <input type="text" disabled placeholder="upload image" class="file-upload-text"/>
-    </div>
-    <div class="form-content container pt-3">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Name *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="User Name  *" value=""/>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your E-mail *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Confirm Password *" value=""/>
-                </div>
-            </div>
-            <div class=" col-12 d-flex justify-content-center">
-                <button type="button" class="btnSubmit">Register</button>
+<div class="container">
+	<div class="row">
+      <div class="col-md-12 col-md-offset-3">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+            <legend class="text-center">Contact us</legend>
+
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label">Name</label>
+              <div class="col-md-3">
+                <input id="name" name="name" type="text" placeholder="" class="form-control">
+              </div>
             </div>
 
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label">Your E-mail</label>
+              <div class="col-md-3">
+                <input id="email" name="email" type="text" placeholder="" class="form-control">
+              </div>
+            </div>
+
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="message">Your message</label>
+              <div class="col-md-9">
+                <textarea class="form-control" id="message" name="message" placeholder="Please enter your message here..." rows="5"></textarea>
+              </div>
+            </div>
+
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
         </div>
-    </div>
+      </div>
+	</div>
+</div>
 </main>
+
 <footer>
     <footer class="site-footer">
         <div class="container">
@@ -133,6 +141,5 @@
         </div>
     </footer>
 </footer>
-
 </body>
 </html>

@@ -12,14 +12,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    <script src="../scripts/pic.js"></script>
-
 </head>
 <body>
 
 <!-- Navigation -->
 <header>
-    <nav class="navbar navbar-expand-md navbar-light">
+    <nav class="navbar navbar-expand-md navbar-light ">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"><img class="i" src="../images/logo.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -31,10 +29,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                         <a class="nav-link" href="login.html">Login</a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="signup.html">Sign up</a>
                     </li>
                     <li class="nav-item">
@@ -46,42 +44,37 @@
     </nav>
 </header>
 <main>
-    <div class="preview img-wrapper"></div>
-    <div class="file-upload-wrapper">
-        <input type="file" name="file" class="file-upload-native" accept="image/*"/>
-        <input type="text" disabled placeholder="upload image" class="file-upload-text"/>
-    </div>
-    <div class="form-content container pt-3">
+    <legend class="text-center">Login</legend>
+    <div class="form-content container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your Name *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="User Name  *" value=""/>
+                    <label class="col-md-3 control-label" >Username</label>
+                    <input type="text" class="form-control" placeholder="" value=""/>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12 d-flex justify-content-center">
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Your E-mail *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password *" value=""/>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Confirm Password *" value=""/>
+                    <label class="col-md-3 control-label" >Password</label>
+                    <input type="text" class="form-control" placeholder="" value=""/>
                 </div>
             </div>
             <div class=" col-12 d-flex justify-content-center">
-                <button type="button" class="btnSubmit">Register</button>
+                <button type="button" class="btnSubmit">Login</button>
             </div>
 
         </div>
     </div>
+    <div class="text-center w-full p-t-25 p-b-230 container">
+        <a href="#" class="txt1">
+            Forgot Password?
+        </a>
+        <a class="txt1" href="signup.html">
+            Create new account
+        </a>
+    </div>
 </main>
+
 <footer>
     <footer class="site-footer">
         <div class="container">
@@ -133,6 +126,5 @@
         </div>
     </footer>
 </footer>
-
 </body>
 </html>
