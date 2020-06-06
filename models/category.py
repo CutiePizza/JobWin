@@ -12,7 +12,8 @@ from sqlalchemy.orm import relationship
 
 class Answer(BaseModel, Base):
     """
-    Representation of an Answer
+    category class
+
     """
     __tablename__ = 'Category'
     cat_id = Column(Integer, primary_key=True)
