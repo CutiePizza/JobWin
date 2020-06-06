@@ -10,7 +10,7 @@ from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 
-class Answer(BaseModel, Base):
+class Category(BaseModel, Base):
     """
     category class
 
