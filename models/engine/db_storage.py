@@ -8,7 +8,13 @@ import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
-classes = {}  # When I get the diagram I'll add them
+classes = {"User": User, "Post": Post,
+        "Comment": Comment, "Interview": Interview,
+        "Question": Question, "Answer": Answer,
+        "Correction": Correction, "Category": Category,
+        "Subcategory": Subcategory, "Relation": Relation,
+        "Sub_follow": Sub_follow, "Comm_like": Comm_like,
+        "Post_like": Post_like}  # When I get the diagram I'll add them
 
 
 class DBStorage:
