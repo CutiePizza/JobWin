@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Contains class BaseModel
+Contains class SecondBaseModel
 """
 
 from datetime import datetime
@@ -15,10 +15,9 @@ time = "%Y-%m-%dT%H:%M:%S.%f"
 Base = declarative_base()
 
 
-class BaseModel:
+class SecondBaseModel:
     """The BaseModel class from which future classes will be derived"""
 
-    id = Column(String(60), primary_key=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow)
 
@@ -36,18 +35,14 @@ class BaseModel:
                 self.updated_at = datetime.strptime(kwargs["updated_at"], time)
             else:
                 self.updated_at = datetime.utcnow()
-            if kwargs.get("id", None) is None:
-                self.id = str(uuid.uuid4())
         else:
-            self.id = str(uuid.uuid4())
             self.created_at = datetime.utcnow()
             self.updated_at = self.created_at
 
-
     def __str__(self):
         """String representation of the BaseModel class"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
-                                         self.__dict__)
+        return "[{:s}] ({:s})({:s}) {}".format(self.__class__.__name__,
+                self.id_1, self.id_2, self.__dict__)
 
     def save(self):
         """updates the attribute 'updated_at' with the current datetime"""

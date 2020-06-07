@@ -15,12 +15,11 @@ class Interview(BaseModel, Base):
     Representation of an Interview
     """
     __tablename__ = 'Interview'
-    int_id = Column(Integer, primary_key=True)
     status = Column(String(255), nullable=False)
     submit_date = Column(Date, nullable=True)
     typee = Column(String(255), nullable=True)
-    user_id = Column(Integer, ForeignKey('Users.user_id'), nullable=False)
-    cat_id = Column(Integer, ForeignKey('Category.cat_id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
+    cat_id = Column(String(60), ForeignKey('Category.id'), nullable=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

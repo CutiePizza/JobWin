@@ -15,12 +15,9 @@ class Comments(BaseModel, Base):
     Representation of a Comment
     """
     __tablename__ = 'Comments'
-    com_id = Column(Integer, primary_key=True)
-    created_at = Column(Date, nullable=False)
-    updated_at = Column(Date, nullable=True)
     content = Column(String(255), nullable=True)
-    user_id = Column(Integer, ForeignKey('Users.user_id'), nullable=False)
-    post_id = Column(Integer, ForeignKey('Post.post_id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
+    post_id = Column(String(60), ForeignKey('Post.id'), nullable=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
