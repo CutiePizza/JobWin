@@ -3,6 +3,19 @@
 Manage the storage of our Objects
 """
 from models.base_model import BaseModel, Base
+from models.user import User
+from models.post import Post
+from models.comment import Comments
+from models.interview import Interview
+from models.answer import Answer
+from models.correction import Correction
+from models.category import Category
+from models.subcategory import Subcategory
+from models.sub_follow import Sub_follow
+from models.relation import Relation
+from models.comm_like import Comm_like
+from models.post_like import Post_like
+from models.question import Question
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
@@ -10,7 +23,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 classes = {"User": User, "Post": Post,
-        "Comment": Comment, "Interview": Interview,
+        "Comment": Comments, "Interview": Interview,
         "Question": Question, "Answer": Answer,
         "Correction": Correction, "Category": Category,
         "Subcategory": Subcategory, "Relation": Relation,
@@ -64,10 +77,10 @@ class DBStorage:
 
     def reload(self):
         """reloads data from database"""
-    Base.metadata.create_all(self.__engine)
-    session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
-    Session = scoped_sessin(session_factory)
-    self.__session = Session
+        Base.metadata.create_all(self.__engine)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session
 
     def close(self):
         """
