@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
-from flask import Flask
-app = Flask(__name__)
+from flask import Flask, render_template
+app = Flask(__name__, static_url_path='', static_folder='static')
 
 
-@app.route('/', strict_slashes=False)
+@app.route('/home')
 def hello_hbnb():
     """ Prints a Message when / is called """
     return render_template('home.html')
