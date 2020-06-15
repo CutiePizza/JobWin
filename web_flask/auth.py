@@ -1,22 +1,22 @@
 from flask import Blueprint, render_template, redirect, url_for, request, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import login_user, logout_user, login_required
+from flask import Flask, render_template
+
+app = Flask(__name__, static_url_path='', static_folder='static')
 
 
-auth = Blueprint('auth', __name__)
-
-
-@auth.route('/login')
+@app.route('/login')
 def login():
     return render_template('login.html')
 
 
-@auth.route('/signup')
+@app.route('/signup')
 def signup():
     return render_template('signup.html')
 
 
-@auth.route('/signup', methods=['POST'])
+@app.route('/signup', methods=['POST'])
 def signup_post():
     email = request.form.get('email')
     name = request.form.get('name')
@@ -40,7 +40,7 @@ def signup_post():
     return redirect(url_for('auth.login'))
 
 
-@auth.route('/login', methods=['POST'])
+@app.route('/login', methods=['POST'])
 def login_post():
     email = request.form.get('email')
     password = request.form.get('password')
@@ -60,13 +60,13 @@ def login_post():
     return redirect(url_for('main.profile'))
 
 
-@auth.route('/logout')
+@app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('home.index'))
 
-@auth.route('/plan', methods=['GET', 'POST'])
+@app.route('/plan', methods=['GET', 'POST'])
 def plan():
     form = ChoiceForm()
 
@@ -76,3 +76,8 @@ def plan():
         return '<html><h1>{}</h1></html>'.format(form.opts.data)
 
     return render_template('home.html', form=form)
+
+
+if __name__ == "__main__":
+    """ Main Function """
+    app.run(host='0.0.0.0', port=5000)

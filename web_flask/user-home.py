@@ -4,10 +4,10 @@ from flask import Flask, render_template
 app = Flask(__name__, static_url_path='', static_folder='static')
 
 
-@app.route('/home')
+@app.route('/user-home')
 def hello_hbnb():
     """ Prints a Message when / is called """
-    return render_template('home.html')
+    return render_template('user-home.html')
 
 if __name__ == "__main__":
     """ Main Function """
