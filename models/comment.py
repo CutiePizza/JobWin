@@ -15,7 +15,6 @@ class Comments(BaseModel, Base):
     Representation of a Comment
     """
     __tablename__ = 'Comments'
-    content = Column(String(255), nullable=True)
     user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
     post_id = Column(String(60), ForeignKey('Post.id'), nullable=False)
 

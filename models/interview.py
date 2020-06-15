@@ -17,7 +17,7 @@ class Interview(BaseModel, Base):
     __tablename__ = 'Interview'
     status = Column(String(255), nullable=False)
     submit_date = Column(Date, nullable=True)
-    typee = Column(String(255), nullable=True)
+    type = Column(String(255), nullable=True)
     user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
     cat_id = Column(String(60), ForeignKey('Category.id'), nullable=False)
 

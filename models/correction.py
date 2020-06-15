@@ -19,7 +19,7 @@ class Correction(BaseModel, Base):
     text = Column(String(255), nullable=True)
     feedback = Column(String(255), nullable=True)
     int_id = Column(String(60), ForeignKey('Interview.id'), nullable=False)
-    u_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
+    user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
     coach_id = Column(String(60), ForeignKey('User.id'), nullable=False)
 
     def __init__(self, *args, **kwargs):
