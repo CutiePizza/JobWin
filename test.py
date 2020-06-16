@@ -17,13 +17,13 @@ from models.post_like import Post_like
 from models.question import Question
 
 # Creation of a user
-user = User(name="Yasmine", last_name="Hamdi",
-        passwd="123456", birth="12-11-1997",
-        email="sonya@joli.com", type="ok", pic=None, status="student", gender="female")
+user = User(name="Ines", last_name="Chokri",
+        passwd="123456", birth="26-04-1997",
+        email="Ines@joli.com", type="ok", pic=None, status="student", gender="female")
 user.save()
 
-user2 = User(name="Salmen", last_name="Zouari",
-        passwd="salmeeeenz", birth="unknown", email="sal@gmail.com",
+user2 = User(name="Houssem", last_name="eedine ben khalifa",
+        passwd="houss", birth="unknown", email="elmatador@gmail.com",
         type="ok2", pic=None, status="Student", gender="Male")
 user2.save()
 
@@ -42,12 +42,12 @@ interview.save()
 
 # Creation of a Post
 
-post = Post(content="Hello guys! I would like to know how is the working environment in Sanatnder",
-        sub_id=sub.id, user_id=user.id, cat_id=cat.id)
+post = Post(content="Hello guys! I would like to know how is Trump ?",
+        sub_id=sub.id, u_id=user2.id, cat_id=cat.id)
 post.save()
 
 # Creation of a Comment
-comment = Comments(content="It is very friendly", user_id=user2.id, post_id=post.id)
+comment = Comments(content="looool", user_id=user.id, post_id=post.id)
 comment.save()
 
 # Creation of a question 

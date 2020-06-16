@@ -49,6 +49,7 @@
 
     <main>
         <div class="container bootstrap snippet">
+            {% for post in posts %}
             <div class="row">
                 <div class="col-sm-8">
                     <div class="panel panel-white post">
@@ -58,17 +59,17 @@
                             </div>
                             <div class="meta">
                                 <div class="title h5">
-                                    <a href="#"><b>Salmen Zouari</b></a>
+                                    <a href="#"><b>{% for user in users %} {% if user.id == post.u_id %} {{user.name}} {% endif %} {% endfor %}<b></a>
                                     made a post.
                                 </div>
-                                <h6 class="text-muted time">56 minute ago</h6>
+                                <h6 class="text-muted time">{{post.updated_at}}</h6>
                             </div>
                         </div>
                         <div class="post-description">
-				<p>I have Santander interview tomorrow, anyone have an idea what quations they can ask?</p>
+				<p>{{post.content}}</p>
                             <div class="stats">
                                 <a href="#" class="btn btn-default stat-item">
-                                    <i class="fa fa-thumbs-up icon"></i>25
+                                    <i class="fa fa-thumbs-up icon"></i>LIKE
                                 </a>
                             </div>
                         </div>
@@ -83,8 +84,9 @@
                                     </a>
                                     <div class="comment-body">
                                         <div class="comment-heading">
+                                            {% for comment in coms %}
                                             <a href="#">
-                                                <h4 class="user">Ines Chokri</h4>
+                                                <h4 class="user"> {% for user in users %} {% if user.id == post.u_id%} {{user.name}} {% endif %} {% endfor %} {% endif %}</h4>
                                             </a>
                                             <h5 class="time">15 minutes ago</h5>
                                         </div>
@@ -94,27 +96,7 @@
                                                 <i class="fa fa-thumbs-up icon"></i> 5
                                             </a>
                                         </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="comments-list">
-                                <li class="comment">
-                                    <a class="pull-left" href="#">
-                                        <img class="avatar" src="../images/user_2.jpg" alt="avatar">
-                                    </a>
-                                    <div class="comment-body">
-                                        <div class="comment-heading">
-                                            <a href="#">
-                                                <h4 class="user">Yasmine Hamdi</h4>
-                                            </a>
-                                            <h5 class="time">5 minutes ago</h5>
-                                        </div>
-                                        <p>What are your expectation from Santander?</p>
-                                        <div class="stats">
-                                            <a href="#" class="btn btn-default stat-item">
-                                                <i class="fa fa-thumbs-up icon"></i>4
-                                            </a>
-                                        </div>
+                                        {% endfor %}
                                     </div>
                                 </li>
                             </ul>
@@ -122,83 +104,7 @@
                     </div>
                 </div>
             </div>
-
-        </div>
-        <div class="container bootstrap snippet">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="panel panel-white post">
-                        <div class="post-heading row">
-                            <div class="image">
-                                <img src="../images/user_1.jpg" class="img-circle avatar" alt="user profile image">
-                            </div>
-                            <div class="meta">
-                                <div class="title h5">
-                                    <a href="#"><b>Salmen Zouari</b></a>
-                                    made a post.
-                                </div>
-                                <h6 class="text-muted time">56 minute ago</h6>
-                            </div>
-                        </div>
-                        <div class="post-description">
-                            <p>I have Santander interview tomorrow, anyone have an idea what quations they can ask?</p>
-                            <div class="stats">
-                                <a href="#" class="btn btn-default stat-item">
-                                    <i class="fa fa-thumbs-up icon"></i>25
-                                </a>
-                            </div>
-                        </div>
-                        <div class="post-footer">
-                            <div class="input-group">
-                                <input class="form-control" placeholder="Add a comment" type="text">
-                            </div>
-                            <ul class="comments-list">
-                                <li class="comment">
-                                    <a class="pull-left" href="#">
-                                        <img class="avatar" src="../images/user_2.jpg" alt="avatar">
-                                    </a>
-                                    <div class="comment-body">
-                                        <div class="comment-heading">
-                                            <a href="#">
-                                                <h4 class="user">Ines Chokri</h4>
-                                            </a>
-                                            <h5 class="time">15 minutes ago</h5>
-                                        </div>
-                                        <p>Why Santander and not another bank?</p>
-                                        <div class="stats">
-                                            <a href="#" class="btn btn-default stat-item">
-                                                <i class="fa fa-thumbs-up icon"></i> 5
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <ul class="comments-list">
-                                <li class="comment">
-                                    <a class="pull-left" href="#">
-                                        <img class="avatar" src="../images/user_2.jpg" alt="avatar">
-                                    </a>
-                                    <div class="comment-body">
-                                        <div class="comment-heading">
-                                            <a href="#">
-                                                <h4 class="user">Yasmine Hamdi</h4>
-                                            </a>
-                                            <h5 class="time">5 minutes ago</h5>
-                                        </div>
-                                        <p>What are your expectation from Santander?</p>
-                                        <div class="stats">
-                                            <a href="#" class="btn btn-default stat-item">
-                                                <i class="fa fa-thumbs-up icon"></i>4
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            {% endfor %}
         </div>
     </main>
 
