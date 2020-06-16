@@ -47,7 +47,7 @@ post = Post(content="Hello guys! I would like to know how is the working environ
 post.save()
 
 # Creation of a Comment
-comment = Comments(content="It is very friendly" user_id=user2.id, post_id=post.id)
+comment = Comments(content="It is very friendly", user_id=user2.id, post_id=post.id)
 comment.save()
 
 # Creation of a question 
@@ -59,7 +59,5 @@ question.save()
 
 ans = Answer(text="Guido Van rossum", audio=None, int_id=interview.id)
 ans.save()
-
-
 
 models.storage.save()

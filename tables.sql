@@ -79,7 +79,7 @@ FOREIGN KEY (sub_id) REFERENCES job_win_db.Subcategory(id)
 );
 
 CREATE TABLE IF NOT EXISTS job_win_db.Answer(
-id int PRIMARY KEY,
+id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
 text varchar(255),
