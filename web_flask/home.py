@@ -3,16 +3,17 @@
 from flask import Flask, render_template
 from models import storage
 from models.user import User
+from models.post import Post
 
 app = Flask(__name__, static_url_path='', static_folder='static')
-st = storage.all()
+
 
 @app.route('/home')
 def hello_hbnb():
     """ Prints a Message when / is called """
-    for k, v in st.items():
-        print(k, v)
-    return render_template('home.html')
+    
+    users = storage.all(User).values()
+    return render_template('home.html', data=users)
 
 if __name__ == "__main__":
     """ Main Function """
