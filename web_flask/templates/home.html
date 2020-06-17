@@ -55,7 +55,9 @@
                     <div class="panel panel-white post">
                         <div class="post-heading row">
                             <div class="image">
-                                <img src="../images/user_1.jpg" class="img-circle avatar" alt="user profile image">
+                                {% for user in users %} {% if user.id == post.u_id %} 
+                                <img src="{{url_for('static', filename=user.pic)}}" class="img-circle avatar" alt="user profile image">
+                                {% endif %} {% endfor %}
                             </div>
                             <div class="meta">
                                 <div class="title h5">
@@ -77,29 +79,42 @@
                             <div class="input-group">
                                 <input class="form-control" placeholder="Add a comment" type="text">
                             </div>
+                            {% for comment in coms %}
                             <ul class="comments-list">
                                 <li class="comment">
                                     <a class="pull-left" href="#">
-                                        <img class="avatar" src="../images/user_2.jpg" alt="avatar">
+                                    {% if comment.post_id == post.id %} 
+                                            {% for user in users %} 
+                                                {% if user.id == comment.user_id %}
+                                            <img class="avatar" src="{{url_for('static', filename=user.pic)}}" alt="avatar">
+                                                
                                     </a>
                                     <div class="comment-body">
                                         <div class="comment-heading">
-                                            {% for comment in coms %}
                                             <a href="#">
-                                                <h4 class="user"> {% for user in users %} {% if user.id == post.u_id%} {{user.name}} {% endif %} {% endfor %} {% endif %}</h4>
+                                                <h4 class="user"> 
+                                                    {{user.name}} 
+                                                </h4>
                                             </a>
-                                            <h5 class="time">15 minutes ago</h5>
+                                            <h5 class="time">{{comment.updated_at}}</h5>
                                         </div>
-                                        <p>Why Santander and not another bank?</p>
+                                    <p>{% if comment.post_id == post.id %} 
+                                        {{comment.content}} {% endif %}
+                                        </p>
+                                        
                                         <div class="stats">
                                             <a href="#" class="btn btn-default stat-item">
                                                 <i class="fa fa-thumbs-up icon"></i> 5
                                             </a>
                                         </div>
-                                        {% endfor %}
+                                    
                                     </div>
                                 </li>
                             </ul>
+                            {% endif %} 
+                                        {% endfor %} 
+                                {% endif %}
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

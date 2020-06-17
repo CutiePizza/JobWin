@@ -22,7 +22,7 @@ class User(BaseModel, Base):
     birth = Column(String(255), nullable=True)
     email = Column(String(255), nullable=False)
     type = Column(String(255), nullable=False)
-    pic = Column(VARBINARY(5000), nullable=True)
+    pic = Column(String(255), nullable=True)
     status = Column(String(255), nullable=True)
     gender = Column(String(255), nullable=False)
 
