@@ -16,10 +16,9 @@ from models.relation import Relation
 from models.comm_like import Comm_like
 from models.post_like import Post_like
 from models.question import Question
+from web_flask import app
 
-app = Flask(__name__, static_url_path='', static_folder='static')
-
-
+@app.route('/')
 @app.route('/home')
 def hello_hbnb():
     """ Prints a Message when / is called """
@@ -28,6 +27,25 @@ def hello_hbnb():
     posts = storage.all(Post).values()
     comments = storage.all(Comments).values()
     return render_template('home.html', users=users, posts=posts, coms=comments)
+
+
+@app.route('/login')
+def login():
+    """go to login"""
+    return render_template('login.html')
+
+
+@app.route('/signup')
+def signup():
+    """ signup  """
+    return render_template('signup.html')
+
+
+@app.route('/contact_us')
+def contact_us():
+    """contact us"""
+    return render_template('contact_us.html')
+
 
 if __name__ == "__main__":
     """ Main Function """
