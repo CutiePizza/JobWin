@@ -35,7 +35,7 @@ app.config['MYSQL_DB'] = 'job_win_db'
 
 # Intialize MySQL
 mysql = MySQL(app)
-@app.route('/pythonlogin', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     # Output message if something goes wrong...
     msg = ''
@@ -61,7 +61,7 @@ def login():
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
     # Show the login form with message (if any)
-    return render_template('index.html', msg=msg)
+    return render_template('login.html', msg=msg)
 
 @app.route('/logout')
 def logout():
