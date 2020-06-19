@@ -17,18 +17,18 @@ from models.post_like import Post_like
 from models.question import Question
 
 # Creation of a user
-user = User(name="Ines", last_name="Chokri",
-        passwd="123456", birth="26-04-1997",
-        email="ines.chokri@joli.com", type="ok", pic="../images/user_1.jpg", status="student", gender="female")
+"""user = User(name="Ines", last_name="Chokri",
+        username="cutiepizza", passwd="123456", birth="26-04-1997",
+        email="ines.chokri@joli.com", type="1", pic="../images/ines.jpg", status="student", gender="female")
 user.save()
 
-user2 = User(name="Houssem", last_name="eddine ben khalifa",
-        passwd="houss", birth="unknown", email="elmatador@gmail.com",
-        type="ok2", pic="../images/user_2.jpg", status="Student", gender="Male")
-user2.save()
+user2 = User(name="Salmen", last_name="Zouari", username="salmenz",
+        passwd="123456", birth="unknown", email="salmenz@gmail.com",
+        type="1", pic="../images/salmen.jpeg", status="Student", gender="Male")
+user2.save()"""
 
 # Creation of a category
-at = Category(name="AI")
+cat = Category(name="AI")
 cat.save()
 
 # Creation of a subcategory
@@ -41,12 +41,12 @@ interview.save()
 
 # Creation of a Post
 
-post = Post(content="Any good website for cheating ?",
+post = Post(content="How do I answer correctly \"tell me about yourself\"?",
         sub_id=sub.id, u_id=user2.id, cat_id=cat.id)
 post.save()
 
 # Creation of a Comment
-comment = Comments(content="R u serious ?", user_id=user.id, post_id=post.id)
+comment = Comments(content="Just tell the story of your life !", user_id=user.id, post_id=post.id)
 comment.save()
 
 # Creation of a question 

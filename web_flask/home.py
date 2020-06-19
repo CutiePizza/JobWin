@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """ Starts a Flash Web Application """
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
@@ -59,7 +59,7 @@ def login():
             session['id'] = account['id']
             session['username'] = account['username']
         # Redirect to home page
-            return render_template('profile.html', msg=msg)
+            return redirect(url_for('profile', msg=msg))
         else:
             # Account doesnt exist or username/password incorrect
             msg = 'Incorrect username/password!'
@@ -75,34 +75,85 @@ def logout():
    # Redirect to login page
    return redirect(url_for('login'))
 
-
-
-
-
-
-
-
 @app.route('/')
 @app.route('/home')
-def hello_hbnb():
+def home():
     """ Prints a Message when / is called """
-    
-    users = storage.all(User).values()
-    posts = storage.all(Post).values()
-    comments = storage.all(Comments).values()
-    return render_template('home.html', users=users, posts=posts, coms=comments)
+    if not session:
+        users = storage.all(User).values()
+        posts = storage.all(Post).values()
+        comments = storage.all(Comments).values()
+        return render_template('home.html', users=users, posts=posts, coms=comments)
+    else:
+        return redirect(url_for('user-home'))
 
 @app.route('/signup')
 def signup():
     """ signup  """
-    return render_template('signup.html')
-
+    if not session:
+        return render_template('signup.html')
+    else:
+        return redirect(url_for('user-home'))
 
 @app.route('/contact_us')
 def contact_us():
     """contact us"""
-    return render_template('contact_us.html')
+    if session:
+        return redirect(url_for('contact_us_user'))
+    else:
+        return render_template('contact_us.html')
 
+
+@app.route('/contact_us_user')
+def contact_us_user():
+    """contact us"""
+    if session:
+        return render_template('contact_us_user.html')
+    else:
+        return redirect(url_for('contact_us'))
+
+@app.route('/user-home')
+def user_home():
+    """user_home"""
+    if session:
+        return render_template('user-home.html')
+    else:
+         return jsonify({"Error": "Not found"})
+
+@app.route('/profile')
+def profile():
+    """profile"""
+    if session:
+        st = storage.all('User').values()
+        id = session['id']
+        lista = []
+        for user in st:
+            if user.id == id:
+                lista = user
+        followers = storage.all('Relation').values()
+        posts = storage.all('Post').values()
+        comments = storage.all('Comments').values()
+        users = storage.all('User').values()
+        return render_template('profile.html', user_id=id, user=lista, followers=followers,
+        posts=posts, comments=comments, users=users)
+    else:
+        return jsonify({"Error": "Not found"})
+
+
+@app.route('/interview')
+def intevriew():
+    """interview"""
+    if session:
+        return render_template('interview.html')
+    else:
+        return jsonify({"Error": "Not found"})
+
+
+
+@app.errorhandler(404)
+def page_404(e):
+    """ Return a custom 404 error """
+    return jsonify({"error": "Not found"}), 404
 
 if __name__ == "__main__":
     """ Main Function """

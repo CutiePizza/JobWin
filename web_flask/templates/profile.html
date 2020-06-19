@@ -27,26 +27,26 @@
     <header>
         <nav class="navbar navbar-expand-md navbar-light ">
             <div class="container-fluid">
-                <a class="navbar-brand" href="home.html"><img class="i" src="../images/logo.png"></a>
+                <a class="navbar-brand" href="/"><img class="i" src="../images/logo.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="user-home.html">Home</a>
+                            <a class="nav-link" href="user-home">Home</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link" href="profile.html">Profile</a>
+                            <a class="nav-link" href="profile">Profile</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="interview.html">Make Interview</a>
+                            <a class="nav-link" href="interview">Make Interview</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact_us.html">Contact us</a>
+                            <a class="nav-link" href="contact_us_user">Contact us</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout">Logout</a>
+                            <a class="nav-link" href="logout">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -57,7 +57,7 @@
         <div class="container">
             <div class="row my-2">
                 <div class="col-lg-4 order-lg-1 text-center">
-                    <img src="../images/user_1.jpg" class="mx-auto img-fluid img-circle d-block" alt="avatar">
+                    <img src="{{url_for('static', filename=user.pic)}}" class="mx-auto img-fluid img-circle d-block" alt="avatar">
                     <h6 class="mt-2">Upload a new photo</h6>
                     <label class="custom-file">
                         <input type="file" id="file" class="custom-file-input">
@@ -78,16 +78,16 @@
                     </ul>
                     <div class="tab-content py-4">
                         <div class="tab-pane active" id="profile">
-                            <h5 class="md-3">Salmen Zouari</h5>
+                            <h5 class="md-3">{{user.name}} {{user.last_name}}</h5>
                             <div class="row col-md-6">
                                 <a href="#"><span class="badge badge-primary"><i class="fa fa-user"></i> 900
-                                        Followers</span></a>
+                                        Followers</span></a>&nbsp;
                                 <a href="#"><span class="badge badge-success"><i class="fa fa-user"></i> 43
                                         Following</span>
                                 </a></div>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h6>About</h6>
+                                    <br><h6>About</h6>
                                     <p>
                                         Web Designer, UI/UX Engineer
                                     </p>
@@ -96,26 +96,28 @@
                                     <h5 class="mt-2"><span class="fa fa-clock-o ion-clock float-right"></span> Recent
                                         Posts
                                     </h5>
+                                    {% for post in posts %}
+                                        {% if user.id == post.u_id %}
+                                            {% if post %}
                                     <div class="container bootstrap snippet">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel panel-white post">
                                                     <div class="post-heading row">
                                                         <div class="image">
-                                                            <img src="../images/user_1.jpg" class="img-circle avatar"
+                                                            <img src="{{url_for('static', filename=user.pic)}}" class="img-circle avatar"
                                                                 alt="user profile image">
                                                         </div>
                                                         <div class="meta">
                                                             <div class="title h5">
-                                                                <a href="#"><b>Salmen Zouari</b></a>
+                                                                <a href="#"><b>{{user.name}} {{user.last_name}}</b></a>
                                                                 made a post.
                                                             </div>
-                                                            <h6 class="text-muted time">56 minute ago</h6>
+                                                            <h6 class="text-muted time">{{post.updated_at}}</h6>
                                                         </div>
                                                     </div>
                                                     <div class="post-description">
-                                                        <p>I have Santander interview tomorrow, anyone have an idea what
-                                                            quations they can ask?</p>
+                                                        <p>{{post.content}}</p>
                                                         <div class="stats">
                                                             <a href="#" class="btn btn-default stat-item">
                                                                 <i class="fa fa-thumbs-up icon"></i>25
@@ -128,48 +130,35 @@
                                                                 type="text">
                                                         </div>
                                                         <ul class="comments-list">
+                                                        {% for comment in coms %}
+                                                            {% if comment.post_id == post.id %} 
+                                                                {% for use in users %} 
+                                                                    {% if use.id == comment.user_id %}
                                                             <li class="comment">
                                                                 <a class="pull-left" href="#">
-                                                                    <img class="avatar" src="../images/user_2.jpg"
+                                                                    <img class="avatar" src="{{url_for('static', filename=use.pic)}}"
                                                                         alt="avatar">
                                                                 </a>
                                                                 <div class="comment-body">
                                                                     <div class="comment-heading">
                                                                         <a href="#">
-                                                                            <h4 class="user">Ines Chokri</h4>
+                                                                            <h4 class="user">{{use.name}} {{use.last_name}}</h4>
                                                                         </a>
-                                                                        <h5 class="time">15 minutes ago</h5>
+                                                                        {% endif %} 
+                                                                        <h5 class="time">{{comment.updated_at}}</h5>
                                                                     </div>
-                                                                    <p>Why Santander and not another bank?</p>
+                                                                    <p>{{comment.content}}</p>
                                                                     <div class="stats">
                                                                         <a href="#" class="btn btn-default stat-item">
                                                                             <i class="fa fa-thumbs-up icon"></i> 5
                                                                         </a>
                                                                     </div>
                                                                 </div>
-                                                            </li>
-                                                        </ul>
-                                                        <ul class="comments-list">
-                                                            <li class="comment">
-                                                                <a class="pull-left" href="#">
-                                                                    <img class="avatar" src="../images/user_2.jpg"
-                                                                        alt="avatar">
-                                                                </a>
-                                                                <div class="comment-body">
-                                                                    <div class="comment-heading">
-                                                                        <a href="#">
-                                                                            <h4 class="user">Yasmine Hamdi</h4>
-                                                                        </a>
-                                                                        <h5 class="time">5 minutes ago</h5>
-                                                                    </div>
-                                                                    <p>What are your expectation from Santander?</p>
-                                                                    <div class="stats">
-                                                                        <a href="#" class="btn btn-default stat-item">
-                                                                            <i class="fa fa-thumbs-up icon"></i>4
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                            </li>
+                                                            </li> 
+                                                            
+                                                                {% endfor %} 
+                                                        {% endif %}
+                                                    {% endfor %}
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -177,6 +166,9 @@
                                         </div>
 
                                     </div>
+                                    {% endif %} 
+                                    {% endif %} 
+                            {% endfor %}
                                 </div>
                             </div>
                             <!--/row-->
@@ -186,31 +178,31 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">First name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Salmen">
+                                        <input class="form-control" type="text" value="{{user.name}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Last name</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="Zouari">
+                                        <input class="form-control" type="text" value="{{user.last_name}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Username</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="text" value="salmenz">
+                                        <input class="form-control" type="text" value="{{user.username}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Email</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="email" value="email@gmail.com">
+                                        <input class="form-control" type="email" value="{{user.email}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Birthday</label>
                                     <div class="col-lg-9 row">
-                                        <input type="date" id="start" name="trip-start" value="" min="1920-01-01"
+                                        <input type="date" id="start" name="trip-start" value="{{user.birth}}" min="1920-01-01"
                                             max="2020-01-01">
                                     </div>
                                 </div>
@@ -251,13 +243,13 @@
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Password</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="11111122333">
+                                        <input class="form-control" type="password" value="{{user.passwd}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
                                     <div class="col-lg-9">
-                                        <input class="form-control" type="password" value="11111122333">
+                                        <input class="form-control" type="password" value="{{user.passwd}}">
                                     </div>
                                 </div>
                                 <div class="form-group row">
