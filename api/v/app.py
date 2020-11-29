@@ -26,6 +26,6 @@ def page_404(e):
 
 
 if __name__ == "__main__":
-    host_api = getenv("JOB_API_HOST", '0.0.0.0')
-    port_api = getenv("JOB_API_PORT", '5000')
+    host_api = getenv("CAL_API_HOST", '0.0.0.0')
+    port_api = getenv("CAL_API_PORT", '5000')
     app.run(host=host_api, port=port_api, threaded=True)

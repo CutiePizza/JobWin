@@ -8,17 +8,9 @@ import re
 from models import storage
 from models.user import User
 from models.post import Post
-from models.comment import Comments
-from models.interview import Interview
-from models.answer import Answer
-from models.correction import Correction
-from models.category import Category
-from models.subcategory import Subcategory
-from models.sub_follow import Sub_follow
-from models.relation import Relation
-from models.comm_like import Comm_like
-from models.post_like import Post_like
 from models.question import Question
+from models.answer import Answer
+from models.calendar import Calendar
 from web_flask import app
 
 
@@ -31,9 +23,9 @@ app.secret_key = 'your secret key'
 
 # Enter your database connection details below
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'job_dev'
-app.config['MYSQL_PASSWORD'] = 'job_dev_pwd'
-app.config['MYSQL_DB'] = 'job_win_db'
+app.config['MYSQL_USER'] = 'cal_dev'
+app.config['MYSQL_PASSWORD'] = 'cal_dev_pwd'
+app.config['MYSQL_DB'] = 'cal_win_db'
 
 
 # Intialize MySQL
@@ -112,13 +104,7 @@ def contact_us_user():
     else:
         return redirect(url_for('contact_us'))
 
-@app.route('/user-home')
-def user_home():
-    """user_home"""
-    if session:
-        return render_template('user-home.html')
-    else:
-         return jsonify({"Error": "Not found"})
+
 
 @app.route('/profile')
 def profile():
@@ -140,11 +126,11 @@ def profile():
         return jsonify({"Error": "Not found"})
 
 
-@app.route('/interview')
-def intevriew():
+@app.route('/questions')
+def question():
     """interview"""
     if session:
-        return render_template('interview.html')
+        return render_template('questions.html')
     else:
         return jsonify({"Error": "Not found"})
 

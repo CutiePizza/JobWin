@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Class Comments
+Class activity
 """
 import models
 from models.base_model import BaseModel, Base
@@ -10,14 +10,15 @@ from sqlalchemy import Column, String, Integer, ForeignKey, Date
 from sqlalchemy.orm import relationship
 
 
-class Comments(BaseModel, Base):
+class Activity(BaseModel, Base):
     """
-    Representation of a Comment
+    Representation of an Activity
     """
-    __tablename__ = 'Comments'
-    content = Column(String(500), nullable=False)
+    __tablename__ = 'Activity'
+    status = Column(String(255), nullable=False)
+    submit_date = Column(Date, nullable=True)
+    type = Column(String(255), nullable=True)
     user_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
-    post_id = Column(String(60), ForeignKey('Post.id'), nullable=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

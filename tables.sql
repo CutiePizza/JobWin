@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS job_win_db.Users(
+CREATE TABLE IF NOT EXISTS cal_win_db.Users(
 id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
@@ -14,14 +14,7 @@ status varchar(255),
 gender varchar(255)
 );
 
-CREATE TABLE IF NOT EXISTS job_win_db.Category(
-id varchar(60) PRIMARY KEY,
-created_at DATETIME,
-updated_at DATETIME,
-name varchar(255)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Interview(
+CREATE TABLE IF NOT EXISTS cal_win_db.Activity(
 id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
@@ -29,118 +22,43 @@ status varchar(255),
 submit_date DATETIME,
 type varchar(255),
 user_id varchar(60),
-cat_id varchar(60),
-FOREIGN KEY (user_id) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (cat_id) REFERENCES job_win_db.Category(id)
+FOREIGN KEY (user_id) REFERENCES cal_win_db.Users(id)
 );
 
-CREATE TABLE IF NOT EXISTS job_win_db.Subcategory(
-id varchar(60) PRIMARY KEY,
-created_at DATETIME,
-updated_at DATETIME,
-name varchar(255),
-cat_id varchar(60),
-FOREIGN KEY (cat_id) REFERENCES job_win_db.Category(id)
-);
 
-CREATE TABLE IF NOT EXISTS job_win_db.Post(
+CREATE TABLE IF NOT EXISTS cal_win_db.Question(
 id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
 content varchar(255),
-sub_id varchar(60),
 u_id varchar(60),
-cat_id varchar(60),
-FOREIGN KEY(u_id) REFERENCES job_win_db.Users(id),
-FOREIGN KEY(sub_id) REFERENCES job_win_db.Subcategory(id),
-FOREIGN KEY(cat_id) REFERENCES job_win_db.Category(id)
+FOREIGN KEY(u_id) REFERENCES cal_win_db.Users(id)
 );
 
-CREATE TABLE IF NOT EXISTS job_win_db.Comments(
+CREATE TABLE IF NOT EXISTS cal_win_db.Answer(
 id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
-content varchar(500),
-user_id varchar(60),
-post_id varchar(60),
-FOREIGN KEY (user_id) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (post_id) REFERENCES job_win_db.Post(id)
+content varchar(255),
+u_id varchar(60),
+quest_id varchar(60),
+FOREIGN KEY(u_id) REFERENCES cal_win_db.Users(id),
+FOREIGN KEY(quest_id) REFERENCES cal_win_db.Question(id)
 );
 
 
-CREATE TABLE IF NOT EXISTS job_win_db.Question(
-id varchar(60) PRIMARY KEY,
-created_at DATETIME,
-updated_at DATETIME,
-text varchar(255),
-type varchar(255),
-sub_id varchar(60),
-FOREIGN KEY (sub_id) REFERENCES job_win_db.Subcategory(id)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Answer(
-id varchar(60) PRIMARY KEY,
-created_at DATETIME,
-updated_at DATETIME,
-text varchar(255),
-audio varbinary(5000),
-int_id varchar(60),
-FOREIGN KEY (int_id) REFERENCES job_win_db.Interview(id)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Correction(
+CREATE TABLE IF NOT EXISTS cal_win_db.Calendar(
 id varchar(60) PRIMARY KEY,
 created_at DATETIME,
 updated_at DATETIME,
 c_date DATETIME,
 text varchar(255),
-feedback varchar(255),
-int_id varchar(60),
 user_id varchar(60),
-coach_id varchar(60),
-FOREIGN KEY (user_id) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (int_id) REFERENCES job_win_db.Interview(id),
-FOREIGN KEY (coach_id) REFERENCES job_win_db.Users(id)
+quest_id varchar(60),
+ans_id varchar(60),
+act_id varchar(60),
+FOREIGN KEY (user_id) REFERENCES cal_win_db.Users(id),
+FOREIGN KEY (quest_id) REFERENCES cal_win_db.Question(id),
+FOREIGN KEY (ans_id) REFERENCES cal_win_db.Answer(id),
+FOREIGN KEY (act_id) REFERENCES cal_win_db.Activity(id)
 );
-
-
-CREATE TABLE IF NOT EXISTS job_win_db.Relation(
-id_1 varchar(60),
-id_2 varchar(60),
-created_at DATETIME,
-updated_at DATETIME,
-FOREIGN KEY (id_1) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (id_2) REFERENCES job_win_db.Users(id),
-PRIMARY KEY (id_1, id_2)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Sub_follow(
-id_1 varchar(60),
-id_2 varchar(60),
-created_at DATETIME,
-updated_at DATETIME,
-FOREIGN KEY (id_1) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (id_2) REFERENCES job_win_db.Users(id),
-PRIMARY KEY (id_1, id_2)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Comm_like(
-id_1 varchar(60),
-id_2 varchar(60),
-created_at DATETIME,
-updated_at DATETIME,
-FOREIGN KEY (id_1) REFERENCES job_win_db.Users(id), 
-FOREIGN KEY (id_2) REFERENCES job_win_db.Comments(id),
-PRIMARY KEY (id_1, id_2)
-);
-
-CREATE TABLE IF NOT EXISTS job_win_db.Post_like(
-id_1 varchar(60),
-id_2 varchar(60),
-created_at DATETIME,
-updated_at DATETIME,
-FOREIGN KEY (id_1) REFERENCES job_win_db.Users(id),
-FOREIGN KEY (id_2) REFERENCES job_win_db.Post(id),
-PRIMARY KEY (id_1, id_2)
-);
-

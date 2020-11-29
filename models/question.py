@@ -15,8 +15,8 @@ class Question(BaseModel, Base):
     Representation of a Question
     """
     __tablename__ = 'Question'
-    text = Column(String(255), nullable=True)
-    sub_id = Column(String(60), ForeignKey('Subcategory.id'), nullable=False)
+    content = Column(String(255), nullable=True)
+    u_id = Column(String(60), ForeignKey('Users.id'), nullable=False)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

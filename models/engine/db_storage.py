@@ -4,31 +4,20 @@ Manage the storage of our Objects
 """
 from models.base_model import BaseModel, Base
 from models.user import User
-from models.post import Post
-from models.comment import Comments
-from models.interview import Interview
 from models.answer import Answer
-from models.correction import Correction
-from models.category import Category
-from models.subcategory import Subcategory
-from models.sub_follow import Sub_follow
-from models.relation import Relation
-from models.comm_like import Comm_like
-from models.post_like import Post_like
 from models.question import Question
+from models.calendar import Calendar
+from models.activity import Activity
+
 from os import getenv
 import sqlalchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 
-classes = {"User": User, "Post": Post,
-        "Comment": Comments, "Interview": Interview,
-        "Question": Question, "Answer": Answer,
-        "Correction": Correction, "Category": Category,
-        "Subcategory": Subcategory, "Relation": Relation,
-        "Sub_follow": Sub_follow, "Comm_like": Comm_like,
-        "Post_like": Post_like}  # When I get the diagram I'll add them
+classes = {"User": User, "Question": Question,
+        "Activity": Activity, "Calendar": Calendar,
+        "Answer": Answer}  
 
 class DBStorage:
     """Interacts with Mysal database"""
